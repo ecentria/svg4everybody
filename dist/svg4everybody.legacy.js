@@ -40,7 +40,7 @@
                         if (polyfill && (!validate || validate(src, svg, use))) {
                             var url = src.split("#"), url_root = url[0], url_hash = url[1];
                             if (svg.removeChild(use), url_root.length) {
-                                var xhr = svgCache[url_root] = svgCache[url_root] || new XMLHttpRequest();
+                                var xhr = svgCache[url_root] = svgCache[url_root] || new (window.XDomainRequest || window.XMLHttpRequest)();
                                 xhr.s || (xhr.s = [], xhr.open("GET", url_root), xhr.send()), xhr.s.push([ svg, url_hash ]), 
                                 loadreadystatechange(xhr);
                             } else {
